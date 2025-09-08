@@ -68,18 +68,19 @@ const App: React.FC = () => {
   }, [analysisResult]);
 
   return (
-    <div className="min-h-screen bg-brand-primary font-sans">
+    <div className="min-h-screen bg-brand-primary font-sans text-brand-text">
       <Header />
-      <main className="container mx-auto p-4 md:p-8">
-        <div className="max-w-4xl mx-auto bg-brand-secondary rounded-2xl shadow-2xl p-6 md:p-8 space-y-8">
-          <FileUpload onFilesSelect={handleFilesSelect} onProcess={handleProcessFiles} isProcessing={isProcessing} />
+      <main className="container mx-auto p-4 sm:p-6 md:p-8">
+        <div className="max-w-5xl mx-auto bg-brand-secondary/50 rounded-2xl shadow-2xl shadow-black/30 backdrop-blur-xl border border-brand-accent/30 p-4 sm:p-6 lg:p-8 space-y-8">
+          <FileUpload onFilesSelect={handleFilesSelect} onProcess={handleProcessFiles} isProcessing={isProcessing} files={files} />
 
-          {error && <div className="bg-red-900/50 border border-red-700 text-red-200 p-4 rounded-lg text-center">{error}</div>}
+          {error && <div className="bg-red-500/10 border border-red-500/30 text-red-300 p-4 rounded-xl text-center font-medium animate-fade-in">{error}</div>}
           
           {isProcessing && (
             <div className="flex flex-col items-center justify-center space-y-4 text-brand-light p-8">
               <Spinner />
               <p className="text-lg animate-pulse">AI agents are analyzing your data...</p>
+              <p className="text-sm text-brand-accent">This might take a moment.</p>
             </div>
           )}
 
@@ -92,7 +93,7 @@ const App: React.FC = () => {
             />
           )}
         </div>
-        <footer className="text-center text-brand-accent mt-12 pb-4">
+        <footer className="text-center text-brand-accent text-sm mt-12 pb-4">
           <p>&copy; {new Date().getFullYear()} DeepSeek Insights. Powered by AI.</p>
         </footer>
       </main>
