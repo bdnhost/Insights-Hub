@@ -84,8 +84,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             }
         });
 
-        const jsonString = response.text.trim();
-        const result = JSON.parse(jsonString);
+        const jsonString = response.text;
+        if (!jsonString) {
+            throw new Error("Received an empty or undefined response from the AI model.");
+        }
+        
+        const result = JSON.parse(jsonString.trim());
 
         return res.status(200).json(result);
     } catch (error) {

@@ -34,7 +34,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             contents: prompt,
         });
         
-        return res.status(200).json({ text: response.text });
+        return res.status(200).json({ text: response.text ?? 'לא התקבלה תשובה.' });
     } catch (error) {
         console.error("Error in /api/query:", error);
         const message = error instanceof Error ? error.message : "An unknown error occurred.";
